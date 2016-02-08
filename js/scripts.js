@@ -78,16 +78,26 @@ Puzzle.prototype.getPuzzleResult = function(  ) {
 }
 
 $(document).ready(function() {
+  var userInput;
+
   $("form#new-puzzle").submit(function(event) {
     event.preventDefault();
     clearPuzzle();
 
-    var userInput = $("input#user-input").val();
+    userInput = $("input#user-input").val();
     var newPuzzle = new Puzzle(userInput).getPuzzleResult();
-    
+
     $("p#puzzle").append("<span class='puzzle'>" + newPuzzle + "</span>");
+  });
+
+  $("form#decrypt").submit(function(event) {
+    event.preventDefault();
+    clearPuzzle();
+
+    $("p#puzzle").append("<span class='puzzle'>"+ userInput + "</span>");
 
   });
+
 
   function clearPuzzle() {
     $("p#puzzle").empty();
