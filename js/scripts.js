@@ -10,13 +10,10 @@ Puzzle.prototype.getPuzzleResult = function(  ) {
 
   var lastDifference = 1000;
   var columnCount = 0;
-  for ( var j = 0; j < roundedSquares.length; j++ )
-  {
+  for ( var j = 0; j < roundedSquares.length; j++ ) {
     var difference = roundedSquares[ j ] - square;
-    if( difference > 0 )
-    {
-      if ( difference < lastDifference )
-      {
+    if( difference > 0 ) {
+      if ( difference < lastDifference ) {
         lastDifference = difference;
         columnCount = roundedSquares[ j ];
       }
@@ -28,14 +25,11 @@ Puzzle.prototype.getPuzzleResult = function(  ) {
   var count = 0;
   var characterCount = Math.round(noSpaces.length / columnCount);
 
-  for ( var i = 0; i < noSpaces.length; i++ )
-  {
-    if ( column !== undefined )
-    {
+  for ( var i = 0; i < noSpaces.length; i++ ) {
+    if ( column !== undefined ) {
       column += noSpaces[ i ];
       count += 1;
-      if ( count === characterCount || i + 1 === noSpaces.length )
-      {
+      if ( count === characterCount || i + 1 === noSpaces.length ) {
         columns.push(column);
         column = "";
         count = 0;
@@ -46,12 +40,9 @@ Puzzle.prototype.getPuzzleResult = function(  ) {
   var encryptedColumns = [  ];
   var encryptedColumn = "";
 
-  for ( var k = 0; k < characterCount; k++ )
-  {
-    for ( var l = 0; l < columns.length; l++ )
-    {
-      if ( columns[ l ][ k ] !== undefined )
-      {
+  for ( var k = 0; k < characterCount; k++ ) {
+    for ( var l = 0; l < columns.length; l++ ) {
+      if ( columns[ l ][ k ] !== undefined ) {
         encryptedColumn += columns[ l ][ k ];
       }
     }
@@ -61,20 +52,16 @@ Puzzle.prototype.getPuzzleResult = function(  ) {
 
   var columns = [  ];
   var encryptedPuzzle = encryptedColumns.join( "" );
-  for ( var m = 0; m < encryptedPuzzle.length; m++ )
-  {
+  for ( var m = 0; m < encryptedPuzzle.length; m++ ) {
     column += encryptedPuzzle[ m ];
     count += 1;
-    if ( count === 5 || m + 1 === encryptedPuzzle.length )
-    {
+    if ( count === 5 || m + 1 === encryptedPuzzle.length ) {
       columns.push(column);
       column = "";
       count = 0;
     }
   }
-
   return columns.join(" ");
-
 }
 
 $(document).ready(function() {
